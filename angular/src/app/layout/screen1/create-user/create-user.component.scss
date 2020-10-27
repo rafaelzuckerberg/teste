@@ -1,0 +1,37 @@
+.header {
+    width: 100%;
+
+    .title {
+        text-align: center;
+        font-size: 22px;
+        font-weight: 700;
+    }
+}
+
+
+.content {
+
+    form {
+        margin-top: 5%;
+        width: 100%;
+
+        mat-form-field {
+            width: 100%;
+        }
+
+
+        .row-buttons {
+            width: 100%;
+            display: flex;
+            
+            .col-button {
+                width: 50%;
+
+                button {
+                    width: 100%;
+                }
+            }
+        }
+
+    }
+}

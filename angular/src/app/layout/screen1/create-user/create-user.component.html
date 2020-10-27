@@ -1,0 +1,60 @@
+
+<div class="header">
+    <div class="title">
+        {{ this.service.user.id != undefined ? 'Atualizar usuário' : 'Criar novo usuário' }}
+    </div>
+</div>
+
+
+
+<div class="content">
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field>
+          <mat-label>Nome do usuário</mat-label>
+          <input type="text" formControlName="name" matInput placeholder="Nome">
+        </mat-form-field>
+        
+        <mat-form-field>
+          <mat-label>Sobrenome do usuário</mat-label>
+          <input type="text" formControlName="lastname" matInput placeholder="Nome">
+        </mat-form-field>
+      
+        <mat-form-field>
+          <mat-label>Digite o email do usuário</mat-label>
+          <input type="email" formControlName="email" matInput placeholder="Email" oninput="this.value = this.value.toLowerCase()">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Digite o telefone do usuário</mat-label>
+          <input type="email" formControlName="cell" matInput placeholder="(00) 00000-0000" oninput="this.value = this.value.toLowerCase()">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Perfil de usuário</mat-label>
+            <mat-select formControlName="profile" (selectionChange)="profileSelected($event.value)">
+                <mat-option *ngFor="let profile of profiles" [value]="profile.id">{{ profile.name }}</mat-option>
+              </mat-select>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="showProfile && showProfile != null">
+            <mat-label>CPF</mat-label>
+            <input type="text" formControlName="cpf" matInput placeholder="CPF">
+        </mat-form-field>
+        
+        <mat-form-field *ngIf="!showProfile && showProfile != null">
+            <mat-label>CNPJ</mat-label>
+            <input type="text" formControlName="cnpj" matInput placeholder="CNPJ" [textMask]="mask">
+        </mat-form-field>
+
+        <div class="row-buttons">
+            <div class="col-button">
+                <button type="submit" mat-stroked-button color="primary" [disabled]="!form.valid || clicked">{{ this.service.user.id != undefined ? 'Atualizar' : 'Criar' }}</button>
+            </div>
+            <div class="col-button">
+                <button type="button" mat-stroked-button color="warn" (click)="closeModal(null)">Cancelar</button>
+            </div>
+        </div>
+      </form>
+      
+</div>
